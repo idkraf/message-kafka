@@ -29,7 +29,7 @@ docker ps
 ```
 
 
-## TRIAL
+## TRIAL node on terminal
 - Jarankan Consumer terlebih dulu di terminal pertama vscode
 ```
 node consumer.js
@@ -38,13 +38,27 @@ node consumer.js
 ```
 node consumer.js
 ```
+
+## TRIAL in Docker
 - Masuk ke container Kafka untuk melihat daftar topik:
 ```
 docker exec -it kafka /bin/bash
 ```
-lalu jalankan
+- Buat topik
+```
+kafka-topics.sh --create --topic test-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+```
+- lihat daftar topic
 ```
 kafka-topics.sh --list --bootstrap-server localhost:9092
+```
+- Jalankan Producer (untuk mengirim pesan)
+```
+kafka-console-producer.sh --topic test-topic --bootstrap-server localhost:9092
+```
+- Jalankan Consumer (untuk penerima pesan)
+```
+docker exec -it kafka kafka-console-consumer.sh --topic test-topic --from-beginning --bootstrap-server localhost:9092
 ```
 - jika ingin hentikan semua container  atau docker compose
 ```
