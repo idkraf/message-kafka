@@ -1,18 +1,17 @@
 const { Kafka } = require('kafkajs');
 
-// Inisialisasi Kafka
 const kafka = new Kafka({
-  clientId: 'simple-consumer',
-  brokers: ['broker:29092'] // Ganti dengan broker yang sesuai
+  clientId: 'docker-consumer',
+  brokers: ['localhost:9092']
 });
 
-const consumer = kafka.consumer({ groupId: 'test-group' });
+const consumer = kafka.consumer({ groupId: 'docker-group' });
 
 const consumeMessage = async () => {
   await consumer.connect();
   console.log('🚀 Connected as Consumer');
 
-  await consumer.subscribe({ topic: 'test-topic', fromBeginning: true });
+  await consumer.subscribe({ topic: 'docker-topic', fromBeginning: true });
 
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
