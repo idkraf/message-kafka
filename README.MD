@@ -38,6 +38,10 @@ node consumer.js
 ```
 node consumer.js
 ```
+- Jika consumer berhasil maka
+```
+📥 Received message: Hello from Docker Producer!
+```
 
 ## TRIAL in Docker
 - Masuk ke container Kafka untuk melihat daftar topik:
@@ -66,5 +70,11 @@ docker-compose down
 ```
 
 ## TROUBLESHOOTING
+- Error connection refused: pastikan docker kafka sudah berjalan (docker ps)
+- Topic not found: pastikan topik sudah di buat menggunakan perintah:
+```
+docker exec -it <container_id_kafka> kafka-topics.sh --list --bootstrap-server localhost:9092
+```
+- Group ID error: maka ganti groupId di consumer.js jika sudah digunakan
 - Port sudah digunakan: maka ganti port di docker-compose.yml
 - Karka tidak bisa terhubung: Pastikan konfigurasi KAFKA_ADVERTISED_LISTENERS sesuai dengan IP?host dari mesin kamu
