@@ -64,3 +64,7 @@ docker exec -it kafka kafka-console-consumer.sh --topic test-topic --from-beginn
 ```
 docker-compose down
 ```
+
+## TROUBLESHOOTING
+- Port sudah digunakan: maka ganti port di docker-compose.yml
+- Karka tidak bisa terhubung: Pastikan konfigurasi KAFKA_ADVERTISED_LISTENERS sesuai dengan IP?host dari mesin kamu
